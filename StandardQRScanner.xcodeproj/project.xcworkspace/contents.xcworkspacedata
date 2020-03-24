@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Standard-QRScanner.xcodeproj">
+      location = "self:/Users/takumi/Documents/iOS2020/OSS/Standard-QRScanner/StandardQRScanner.xcodeproj">
    </FileRef>
 </Workspace>
