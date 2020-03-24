@@ -6,18 +6,28 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		E10B328E242BA2CC00F192BF /* StandardQRScanner-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E10B328F242BA2CC00F192BF /* Build configuration list for PBXAggregateTarget "StandardQRScanner-Universal" */;
+			buildPhases = (
+				E10B3292242BA2F100F192BF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "StandardQRScanner-Universal";
+			productName = "StandardQRScanner-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		E10B31F9242B416300F192BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1366948242B32F200F9BE42 /* AVFoundation.framework */; };
 		E1366915242A669A00F9BE42 /* StandardQRScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E136690B242A669A00F9BE42 /* StandardQRScanner.framework */; };
 		E136691A242A669A00F9BE42 /* StandardQRScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1366919242A669A00F9BE42 /* StandardQRScannerTests.swift */; };
 		E136691C242A669A00F9BE42 /* StandardQRScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E136690E242A669A00F9BE42 /* StandardQRScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E136692C242A690A00F9BE42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136692B242A690A00F9BE42 /* AppDelegate.swift */; };
-		E136692E242A690A00F9BE42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136692D242A690A00F9BE42 /* SceneDelegate.swift */; };
-		E1366930242A690A00F9BE42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136692F242A690A00F9BE42 /* ViewController.swift */; };
-		E1366933242A690A00F9BE42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1366931242A690A00F9BE42 /* Main.storyboard */; };
-		E1366935242A691400F9BE42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1366934242A691400F9BE42 /* Assets.xcassets */; };
-		E1366938242A691400F9BE42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1366936242A691400F9BE42 /* LaunchScreen.storyboard */; };
-		E136693E242A6BEF00F9BE42 /* QRScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136693D242A6BEF00F9BE42 /* QRScanView.swift */; };
-		E1366940242A6D4D00F9BE42 /* StandardQRScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E136690B242A669A00F9BE42 /* StandardQRScanner.framework */; };
+		E136693E242A6BEF00F9BE42 /* QRScanerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136693D242A6BEF00F9BE42 /* QRScanerView.swift */; };
+		E1366942242A777B00F9BE42 /* ScannerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1366941242A777B00F9BE42 /* ScannerError.swift */; };
+		E1E1A556242C60D400FE0426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1E1A554242C606100FE0426 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,15 +47,10 @@
 		E1366914242A669A00F9BE42 /* StandardQRScannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StandardQRScannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1366919242A669A00F9BE42 /* StandardQRScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardQRScannerTests.swift; sourceTree = "<group>"; };
 		E136691B242A669A00F9BE42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1366929242A690A00F9BE42 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E136692B242A690A00F9BE42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E136692D242A690A00F9BE42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E136692F242A690A00F9BE42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E1366932242A690A00F9BE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E1366934242A691400F9BE42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E1366937242A691400F9BE42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E1366939242A691400F9BE42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E136693D242A6BEF00F9BE42 /* QRScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanView.swift; sourceTree = "<group>"; };
+		E136693D242A6BEF00F9BE42 /* QRScanerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanerView.swift; sourceTree = "<group>"; };
+		E1366941242A777B00F9BE42 /* ScannerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerError.swift; sourceTree = "<group>"; };
+		E1366948242B32F200F9BE42 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E1E1A554242C606100FE0426 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10B31F9242B416300F192BF /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,14 +70,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1366926242A690A00F9BE42 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1366940242A6D4D00F9BE42 /* StandardQRScanner.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -80,7 +78,6 @@
 			children = (
 				E136690D242A669A00F9BE42 /* StandardQRScanner */,
 				E1366918242A669A00F9BE42 /* StandardQRScannerTests */,
-				E136692A242A690A00F9BE42 /* SampleApp */,
 				E136690C242A669A00F9BE42 /* Products */,
 				E136693F242A6D4D00F9BE42 /* Frameworks */,
 			);
@@ -91,7 +88,6 @@
 			children = (
 				E136690B242A669A00F9BE42 /* StandardQRScanner.framework */,
 				E1366914242A669A00F9BE42 /* StandardQRScannerTests.xctest */,
-				E1366929242A690A00F9BE42 /* SampleApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,9 +95,11 @@
 		E136690D242A669A00F9BE42 /* StandardQRScanner */ = {
 			isa = PBXGroup;
 			children = (
+				E1E1A554242C606100FE0426 /* Images.xcassets */,
 				E136690E242A669A00F9BE42 /* StandardQRScanner.h */,
 				E136690F242A669A00F9BE42 /* Info.plist */,
-				E136693D242A6BEF00F9BE42 /* QRScanView.swift */,
+				E136693D242A6BEF00F9BE42 /* QRScanerView.swift */,
+				E1366941242A777B00F9BE42 /* ScannerError.swift */,
 			);
 			path = StandardQRScanner;
 			sourceTree = "<group>";
@@ -115,23 +113,10 @@
 			path = StandardQRScannerTests;
 			sourceTree = "<group>";
 		};
-		E136692A242A690A00F9BE42 /* SampleApp */ = {
-			isa = PBXGroup;
-			children = (
-				E136692B242A690A00F9BE42 /* AppDelegate.swift */,
-				E136692D242A690A00F9BE42 /* SceneDelegate.swift */,
-				E136692F242A690A00F9BE42 /* ViewController.swift */,
-				E1366931242A690A00F9BE42 /* Main.storyboard */,
-				E1366934242A691400F9BE42 /* Assets.xcassets */,
-				E1366936242A691400F9BE42 /* LaunchScreen.storyboard */,
-				E1366939242A691400F9BE42 /* Info.plist */,
-			);
-			path = SampleApp;
-			sourceTree = "<group>";
-		};
 		E136693F242A6D4D00F9BE42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1366948242B32F200F9BE42 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,9 +140,10 @@
 			buildConfigurationList = E136691F242A669A00F9BE42 /* Build configuration list for PBXNativeTarget "StandardQRScanner" */;
 			buildPhases = (
 				E1366906242A669900F9BE42 /* Headers */,
+				E1E1A555242C60BF00FE0426 /* Resources */,
 				E1366907242A669900F9BE42 /* Sources */,
 				E1366908242A669900F9BE42 /* Frameworks */,
-				E1366909242A669900F9BE42 /* Resources */,
+				E10B328D242BA0F800F192BF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -186,23 +172,6 @@
 			productReference = E1366914242A669A00F9BE42 /* StandardQRScannerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E1366928242A690A00F9BE42 /* SampleApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E136693A242A691400F9BE42 /* Build configuration list for PBXNativeTarget "SampleApp" */;
-			buildPhases = (
-				E1366925242A690A00F9BE42 /* Sources */,
-				E1366926242A690A00F9BE42 /* Frameworks */,
-				E1366927242A690A00F9BE42 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SampleApp;
-			productName = SampleApp;
-			productReference = E1366929242A690A00F9BE42 /* SampleApp.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,14 +182,14 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Takumi;
 				TargetAttributes = {
+					E10B328E242BA2CC00F192BF = {
+						CreatedOnToolsVersion = 11.3;
+					};
 					E136690A242A669900F9BE42 = {
 						CreatedOnToolsVersion = 11.3;
 						LastSwiftMigration = 1130;
 					};
 					E1366913242A669A00F9BE42 = {
-						CreatedOnToolsVersion = 11.3;
-					};
-					E1366928242A690A00F9BE42 = {
 						CreatedOnToolsVersion = 11.3;
 					};
 				};
@@ -240,19 +209,12 @@
 			targets = (
 				E136690A242A669900F9BE42 /* StandardQRScanner */,
 				E1366913242A669A00F9BE42 /* StandardQRScannerTests */,
-				E1366928242A690A00F9BE42 /* SampleApp */,
+				E10B328E242BA2CC00F192BF /* StandardQRScanner-Universal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E1366909242A669900F9BE42 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1366912242A669A00F9BE42 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,24 +222,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1366927242A690A00F9BE42 /* Resources */ = {
+		E1E1A555242C60BF00FE0426 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1366938242A691400F9BE42 /* LaunchScreen.storyboard in Resources */,
-				E1366935242A691400F9BE42 /* Assets.xcassets in Resources */,
-				E1366933242A690A00F9BE42 /* Main.storyboard in Resources */,
+				E1E1A556242C60D400FE0426 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E10B328D242BA0F800F192BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		E10B3292242BA2F100F192BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=false\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n\n                                                                      if [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n                                                                      cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n\n                                                                      ######################\n                                                                      # On Release, copy the result to release directory\n                                                                      ######################\n                                                                      OUTPUT_DIR=\"${PROJECT_DIR}/build/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n\n                                                                      rm -rf \"$OUTPUT_DIR\"\n                                                                      mkdir -p \"$OUTPUT_DIR\"\n\n                                                                      cp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n\n                                                                      if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\n                                                                      open \"${OUTPUT_DIR}/\"\n                                                                      fi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E1366907242A669900F9BE42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E136693E242A6BEF00F9BE42 /* QRScanView.swift in Sources */,
+				E136693E242A6BEF00F9BE42 /* QRScanerView.swift in Sources */,
+				E1366942242A777B00F9BE42 /* ScannerError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,16 +284,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E136691A242A669A00F9BE42 /* StandardQRScannerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1366925242A690A00F9BE42 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1366930242A690A00F9BE42 /* ViewController.swift in Sources */,
-				E136692C242A690A00F9BE42 /* AppDelegate.swift in Sources */,
-				E136692E242A690A00F9BE42 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,26 +297,23 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		E1366931242A690A00F9BE42 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1366932242A690A00F9BE42 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E1366936242A691400F9BE42 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1366937242A691400F9BE42 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
+		E10B3290242BA2CC00F192BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E10B3291242BA2CC00F192BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		E136691D242A669A00F9BE42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -550,51 +535,18 @@
 			};
 			name = Release;
 		};
-		E136693B242A691400F9BE42 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.takumi.SampleQRScanApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E136693C242A691400F9BE42 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SampleApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.takumi.SampleQRScanApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E10B328F242BA2CC00F192BF /* Build configuration list for PBXAggregateTarget "StandardQRScanner-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E10B3290242BA2CC00F192BF /* Debug */,
+				E10B3291242BA2CC00F192BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E1366905242A669900F9BE42 /* Build configuration list for PBXProject "StandardQRScanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -618,15 +570,6 @@
 			buildConfigurations = (
 				E1366923242A669A00F9BE42 /* Debug */,
 				E1366924242A669A00F9BE42 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E136693A242A691400F9BE42 /* Build configuration list for PBXNativeTarget "SampleApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E136693B242A691400F9BE42 /* Debug */,
-				E136693C242A691400F9BE42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
