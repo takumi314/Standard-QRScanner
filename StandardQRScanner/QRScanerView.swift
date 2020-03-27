@@ -34,6 +34,8 @@ public class QRScannerView: UIView {
         let focusImagePadding: CGFloat?
         let animationDuration: Double?
         let isBlurEffectEnabled: Bool?
+        /// フォーカス内のみ検出可能か
+        let isDetectableInFocusImage: Bool?
 
         public static var `default`: Configuration {
             return .init(objectTypes: ObjectType.allCases, focusImage: nil, focusImagePadding: nil, animationDuration: nil, isBlurEffectEnabled: nil)
@@ -43,12 +45,14 @@ public class QRScannerView: UIView {
                     focusImage: UIImage? = nil,
                     focusImagePadding: CGFloat? = nil,
                     animationDuration: Double? = nil,
-                    isBlurEffectEnabled: Bool? = nil) {
+                    isBlurEffectEnabled: Bool? = nil,
+                    isDetectableInFocusImage: Bool? = nil) {
             self.objectTypes = objectTypes
             self.focusImage = focusImage
             self.focusImagePadding = focusImagePadding
             self.animationDuration = animationDuration
             self.isBlurEffectEnabled = isBlurEffectEnabled
+            self.isDetectableInFocusImage = isDetectableInFocusImage
         }
     }
 
@@ -101,6 +105,9 @@ public class QRScannerView: UIView {
         if let animationDuration = configuration.animationDuration {
             self.animationDuration = animationDuration
         }
+        if let isDetectableInFocusImage = configuration.isDetectableInFocusImage {
+            self.isDetectableInFocusImage = isDetectableInFocusImage
+        }
 
         do {
             try setupSession()
@@ -145,6 +152,7 @@ public class QRScannerView: UIView {
     private var qrCodeImageView = UIImageView()
     private var metadataOutput = AVCaptureMetadataOutput()
     private var metadataOutputEnable = false
+    private var isDetectableInFocusImage = true
     private var qrCodeImage: UIImage?
     private var objectTypes: [ObjectType] = []
 }
@@ -230,6 +238,14 @@ private extension QRScannerView {
         qrCodeImageView = UIImageView()
         qrCodeImageView.contentMode = .scaleAspectFill
         addSubview(qrCodeImageView)
+
+        if isDetectableInFocusImage {
+            let width = focusImageView.frame.width / self.frame.width
+            let height = focusImageView.frame.height / self.frame.height
+            let x = focusImageView.frame.origin.x / self.frame.width
+            let y = focusImageView.frame.origin.y / self.frame.height
+            metadataOutput.rectOfInterest = CGRect(x: y, y: 1 - x - width, width: height, height: width)
+        }
     }
 
     func success(_ code: String) {
