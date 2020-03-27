@@ -13,6 +13,9 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var qrScannerView: QRScannerView!
 
+    @IBOutlet weak var closeButton: UIButton!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,6 +25,8 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         qrScannerView.configure(self, .default)
         qrScannerView.startRunning()
+        // ボタンをひ配置する
+        qrScannerView.bringSubviewToFront(closeButton)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -29,6 +34,9 @@ class ViewController: UIViewController {
         qrScannerView.stopRunning()
     }
 
+    @IBAction func onBack(_ sender: Any) {
+        print("tap Back button")
+    }
 }
 
 extension ViewController: QRScanerViewDelegate {
