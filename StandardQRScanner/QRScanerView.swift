@@ -136,7 +136,16 @@ public class QRScannerView: UIView {
     }
 
     deinit {
-
+        focusImageView.removeFromSuperview()
+        qrCodeImageView.removeFromSuperview()
+        session.inputs.forEach({ session.removeInput($0) })
+        session.outputs.forEach({ session.removeOutput($0) })
+        removePreviewLayer()
+        if session.isRunning {
+            DispatchQueue.main.async { [weak self] in
+                self?.stopRunning()
+            }
+        }
     }
 
     // MARK: - Private Properties
