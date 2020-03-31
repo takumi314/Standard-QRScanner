@@ -122,6 +122,7 @@ public class QRScannerView: UIView {
         guard isAuthorized else { return }
         guard !session.isRunning else { return }
         metadataOutputEnable = true
+        videoDataOutputEnable = false
         metadataQueue.async { [weak self] in
             self?.session.startRunning()
         }
@@ -133,6 +134,7 @@ public class QRScannerView: UIView {
             self?.session.stopRunning()
         }
         metadataOutputEnable = false
+        videoDataOutputEnable = false
     }
 
     deinit {
@@ -160,7 +162,9 @@ public class QRScannerView: UIView {
     private var focusImageView = UIImageView()
     private var qrCodeImageView = UIImageView()
     private var metadataOutput = AVCaptureMetadataOutput()
+    private var videodataOutput = AVCaptureVideoDataOutput()
     private var metadataOutputEnable = false
+    private var videoDataOutputEnable = false
     private var isDetectableInFocusImage = true
     private var qrCodeImage: UIImage?
     private var objectTypes: [ObjectType] = []
@@ -201,20 +205,30 @@ private extension QRScannerView {
                 throw ScannerError.unavailable(.inputInvalid)
         }
         guard session.canAddOutput(metadataOutput) else {
+            throw ScannerError.unavailable(.metadataOutputFailure)
+        }
+        guard session.canAddOutput(videodataOutput) else {
             throw ScannerError.unavailable(.videoDataOutputFailure)
         }
-
+        
         // session commit
         session.beginConfiguration()
         session.addInput(deviceInput)
+        // Metadata Output
         metadataOutput.setMetadataObjectsDelegate(self, queue: metadataQueue)
         session.addOutput(metadataOutput)
         metadataOutput.metadataObjectTypes = objectTypes.flatMap({ $0.avMetadataObjectType })
-        
+        // Video Output
+        videodataOutput.videoSettings
+            = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA] // 32 bit BGRA
+        videodataOutput.setSampleBufferDelegate(self, queue: videoDataQueue)
+        session.addOutput(videodataOutput)
+
         session.commitConfiguration()
 
         if isNotDetermined {
             metadataOutputEnable = true
+            videoDataOutputEnable = false
             metadataQueue.async { [weak self] in
                 // start session
                 self?.session.startRunning()
@@ -323,7 +337,7 @@ private extension QRScannerView {
 
 }
 
-// MARK* - AVCaptureMetadataOutputObjectsDelegate
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension QRScannerView: AVCaptureMetadataOutputObjectsDelegate {
     public func metadataOutput(_ output: AVCaptureMetadataOutput,
                                didOutput metadataObjects: [AVMetadataObject],
@@ -340,6 +354,7 @@ extension QRScannerView: AVCaptureMetadataOutputObjectsDelegate {
                 as? AVMetadataMachineReadableCodeObject else { return }
             guard let qrCode = readableObject.stringValue else { return }
             metadataOutputEnable = false
+            videoDataOutputEnable = true
 
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
@@ -352,3 +367,52 @@ extension QRScannerView: AVCaptureMetadataOutputObjectsDelegate {
     }
 
 }
+
+// MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
+extension QRScannerView: AVCaptureVideoDataOutputSampleBufferDelegate {
+    public func captureOutput(_ output: AVCaptureOutput,
+                              didOutput sampleBuffer: CMSampleBuffer,
+                              from connection: AVCaptureConnection) {
+        connection.videoOrientation = .portrait
+        // Metadata取得直後のみ
+        guard videoDataOutputEnable else { return }
+        // Get Image
+        guard let image = getImage(from: sampleBuffer) else { return }
+        
+        self.qrCodeImage = image
+        // 無効化
+        videoDataOutputEnable = false
+    }
+    
+    private func getImage(from sampleBuffer: CMSampleBuffer) -> UIImage? {
+        // To get CVImageBuffer from CMSampleBuffer
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
+        // カメラから送られてくるデータの書き換えを回避するためにロックする
+        CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags.readOnly)
+        // To get data address
+        let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer)
+        // To get CGImage from CoreImage
+        let pixelBufferWidth = CVPixelBufferGetWidth(pixelBuffer)
+        let pixelBufferHeight = CVPixelBufferGetHeight(pixelBuffer)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue)
+        let context = CGContext(data: baseAddress,
+                                width: pixelBufferWidth,
+                                height: pixelBufferHeight,
+                                bitsPerComponent: 8,
+                                bytesPerRow: bytesPerRow,
+                                space: colorSpace,
+                                bitmapInfo: bitmapInfo.rawValue)
+        guard let cgImage = context?.makeImage() else { return nil }
+        // To get UIImage from CGImage
+        let uiImage = UIImage(cgImage: cgImage, scale: UIScreen.main.scale, orientation: .up)
+        
+        // ロック解除
+        CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags.readOnly)
+        
+        return uiImage
+    }
+
+}
+
