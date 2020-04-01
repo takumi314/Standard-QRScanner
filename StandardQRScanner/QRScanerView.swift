@@ -387,7 +387,7 @@ extension QRScannerView: AVCaptureVideoDataOutputSampleBufferDelegate {
     private func getImage(from sampleBuffer: CMSampleBuffer) -> UIImage? {
         // To get CVImageBuffer from CMSampleBuffer
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return nil }
-        // カメラから送られてくるデータの書き換えを回避するためにロックする
+        // カメラから次々と送られてくるデータ書き換えを回避するためにロックする
         CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags.readOnly)
         // To get data address
         let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer)
