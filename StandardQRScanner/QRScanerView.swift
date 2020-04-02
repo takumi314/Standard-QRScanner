@@ -331,6 +331,7 @@ private extension QRScannerView {
         }, completion: { [weak self] _ in
                 guard let strongSelf = self else { return }
                 strongSelf.qrCodeImageView.image = strongSelf.qrCodeImage
+                strongSelf.previewLayer?.opacity = 0.4
                 strongSelf.success(qrCode)
         })
     }
@@ -359,7 +360,6 @@ extension QRScannerView: AVCaptureMetadataOutputObjectsDelegate {
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
                 self.detectQRCode(qrCode, corners: readableObject.corners)
-                self.stopRunning()
             }
         default:
             break
@@ -378,10 +378,12 @@ extension QRScannerView: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard videoDataOutputEnable else { return }
         // Get Image
         guard let image = getImage(from: sampleBuffer) else { return }
-        
+
         self.qrCodeImage = image
         // 無効化
         videoDataOutputEnable = false
+
+        stopRunning()
     }
     
     private func getImage(from sampleBuffer: CMSampleBuffer) -> UIImage? {
@@ -396,7 +398,8 @@ extension QRScannerView: AVCaptureVideoDataOutputSampleBufferDelegate {
         let pixelBufferHeight = CVPixelBufferGetHeight(pixelBuffer)
         let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue)
+        let bitmapInfo
+            = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
         let context = CGContext(data: baseAddress,
                                 width: pixelBufferWidth,
                                 height: pixelBufferHeight,
@@ -411,7 +414,29 @@ extension QRScannerView: AVCaptureVideoDataOutputSampleBufferDelegate {
         // ロック解除
         CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags.readOnly)
         
-        return uiImage
+        return editImage(uiImage)
+    }
+
+    private func editImage(_ image: UIImage) -> UIImage? {
+        guard let ciImage = CIImage(image: image) else { return nil }
+        // To create Detector
+        let detector
+            = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+        guard let features = detector?.features(in: ciImage) else { return nil }
+        guard let feature = features.first as? CIQRCodeFeature else { return nil }
+
+        // QRコード領域（反転操作）
+        let transformation = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -ciImage.extent.size.height)
+        let path = UIBezierPath()
+        path.move(to: feature.topLeft.applying(transformation))
+        path.addLine(to: feature.topRight.applying(transformation))
+        path.addLine(to: feature.bottomRight.applying(transformation))
+        path.addLine(to: feature.bottomLeft.applying(transformation))
+        path.close()
+        // 読み取り後のQRコード画像
+        guard let readQRCodeImage = image.crop(path) else { return nil }
+
+        return readQRCodeImage
     }
 
 }
