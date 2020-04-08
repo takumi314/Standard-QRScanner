@@ -27,6 +27,7 @@
 		E136691C242A669A00F9BE42 /* StandardQRScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = E136690E242A669A00F9BE42 /* StandardQRScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E136693E242A6BEF00F9BE42 /* QRScanerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136693D242A6BEF00F9BE42 /* QRScanerView.swift */; };
 		E1366942242A777B00F9BE42 /* ScannerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1366941242A777B00F9BE42 /* ScannerError.swift */; };
+		E19E3524243588CC009009EC /* UIImage+Crop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19E3523243588CC009009EC /* UIImage+Crop.swift */; };
 		E1E1A556242C60D400FE0426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1E1A554242C606100FE0426 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		E136693D242A6BEF00F9BE42 /* QRScanerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanerView.swift; sourceTree = "<group>"; };
 		E1366941242A777B00F9BE42 /* ScannerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerError.swift; sourceTree = "<group>"; };
 		E1366948242B32F200F9BE42 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E19E3523243588CC009009EC /* UIImage+Crop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Crop.swift"; sourceTree = "<group>"; };
 		E1E1A554242C606100FE0426 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 				E136690F242A669A00F9BE42 /* Info.plist */,
 				E136693D242A6BEF00F9BE42 /* QRScanerView.swift */,
 				E1366941242A777B00F9BE42 /* ScannerError.swift */,
+				E19E3523243588CC009009EC /* UIImage+Crop.swift */,
 			);
 			path = StandardQRScanner;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			files = (
 				E136693E242A6BEF00F9BE42 /* QRScanerView.swift in Sources */,
 				E1366942242A777B00F9BE42 /* ScannerError.swift in Sources */,
+				E19E3524243588CC009009EC /* UIImage+Crop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
